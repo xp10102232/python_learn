@@ -1,0 +1,439 @@
+Windows Subsystem for Linux is now available in the Microsoft Store!
+You can upgrade by running 'wsl.exe --update' or by visiting https://aka.ms/wslstorepage
+Installing WSL from the Microsoft Store will give you the latest WSL updates, faster.
+For more information please visit https://aka.ms/wslstoreinfo
+
+Welcome to Ubuntu 20.04.3 LTS (GNU/Linux 4.4.0-19041-Microsoft x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Fri Mar 24 09:20:51 CST 2023
+
+  System load:    0.52      Processes:              7
+  Usage of /home: unknown   Users logged in:        0
+  Memory usage:   55%       IPv4 address for eth2:  172.27.80.1
+  Swap usage:     0%        IPv4 address for wifi0: 100.96.140.33
+
+175 updates can be applied immediately.
+123 of these updates are standard security updates.
+To see these additional updates run: apt list --upgradable
+
+
+The list of available updates is more than a week old.
+To check for new updates run: sudo apt update
+
+
+This message is shown once a day. To disable it please create the
+/home/[user]/.hushlogin file.
+[user]@SLB-3D05SQ3:~$ python3 -V
+Python 3.8.10
+[user]@SLB-3D05SQ3:~$ python3 -m pip install --user pipenv
+Requirement already satisfied: pipenv in ./.local/lib/python3.8/site-packages (2023.2.4)
+Requirement already satisfied: certifi in /usr/lib/python3/dist-packages (from pipenv) (2019.11.28)
+Requirement already satisfied: virtualenv-clone>=0.2.5 in ./.local/lib/python3.8/site-packages (from pipenv) (0.5.7)
+Requirement already satisfied: setuptools>=36.2.1 in /usr/lib/python3/dist-packages (from pipenv) (45.2.0)
+Requirement already satisfied: virtualenv in ./.local/lib/python3.8/site-packages (from pipenv) (20.19.0)
+Requirement already satisfied: distlib<1,>=0.3.6 in ./.local/lib/python3.8/site-packages (from virtualenv->pipenv) (0.3.6)
+Requirement already satisfied: platformdirs<4,>=2.4 in ./.local/lib/python3.8/site-packages (from virtualenv->pipenv) (3.0.0)
+Requirement already satisfied: filelock<4,>=3.4.1 in ./.local/lib/python3.8/site-packages (from virtualenv->pipenv) (3.9.0)
+
+[notice] A new release of pip is available: 23.0 -> 23.0.1
+[notice] To update, run: python3 -m pip install --upgrade pip
+[user]@SLB-3D05SQ3:~$
+
+
+[user]@SLB-3D05SQ3:~/python/managing-python-packages-virtual-environments/demos$ ls
+Pipfile  Pipfile.lock  babel_demo.py  requirements.txt
+[user]@SLB-3D05SQ3:~/python/managing-python-packages-virtual-environments/demos$ cat babel_demo.py
+from babel.numbers import format_number
+
+number = 12345678
+print("In the Netherlands we write",
+      format_number(number, locale="en_US"),
+      "as",
+      format_number(number, locale="nl_NL"))
+[user]@SLB-3D05SQ3:~/python/managing-python-packages-virtual-environments/demos$ pipeve install babel
+pipeve: command not found
+[user]@SLB-3D05SQ3:~/python/managing-python-packages-virtual-environments/demos$ pipenv install babel
+Installing babel...
+Resolving babel...
+Installing...
+Adding babel to Pipfile's [packages] ...
+✔ Installation Succeeded
+Installing dependencies from Pipfile.lock (c7f42f)...
+To activate this project's virtualenv, run pipenv shell.
+Alternatively, run a command inside the virtualenv with pipenv run.
+[user]@SLB-3D05SQ3:~/python/managing-python-packages-virtual-environments/demos$
+
+# create virtual env & bound to this specific project & install dependencies in my env & create a pipfile.lock, Pipfile
+
+[user]@SLB-3D05SQ3:~/python/managing-python-packages-virtual-environments/demos$ ls
+Pipfile  Pipfile.lock  babel_demo.py  requirements.txt
+[user]@SLB-3D05SQ3:~/python/managing-python-packages-virtual-environments/demos$ ls -l
+total 4
+-rw-r--r-- 1 [user] [user]  150 Feb 15 13:00 Pipfile
+-rw-r--r-- 1 [user] [user] 1055 Feb 15 13:00 Pipfile.lock
+-rwxrwx--- 1 [user] [user]  198 Jul 29  2021 babel_demo.py
+-rw-r--r-- 1 [user] [user]   29 Feb  6 09:26 requirements.txt
+[user]@SLB-3D05SQ3:~/python/managing-python-packages-virtual-environments/demos$ cat Pipfile
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+babel = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.8"
+[user]@SLB-3D05SQ3:~/python/managing-python-packages-virtual-environments/demos$
+
+# [packages] section: babel with any version
+# [dev-packages] section: development-only dependencies  => code checker; unit test runner
+# [requires] python version (package is download by default is PyPI)
+# similar requirements.txt, but more functionality  => general human readable specification of dependencies
+
+
+[user]@SLB-3D05SQ3:~/python/managing-python-packages-virtual-environments/demos$ cat Pipfile.lock
+{
+    "_meta": {
+        "hash": {
+            "sha256": "6a71783306af790def3fd9baed220c82ef5117229bc8be5c42d32c47b6c7f42f"
+        },
+        "pipfile-spec": 6,
+        "requires": {
+            "python_version": "3.8"
+        },
+        "sources": [
+            {
+                "name": "pypi",
+                "url": "https://pypi.org/simple",
+                "verify_ssl": true
+            }
+        ]
+    },
+    "default": {
+        "babel": {
+            "hashes": [
+                "sha256:1ad3eca1c885218f6dce2ab67291178944f810a10a9b5f3cb8382a5a232b64fe",
+                "sha256:5ef4b3226b0180dedded4229651c8b0e1a3a6a2837d45a073272f313e4cf97f6"
+            ],
+            "index": "pypi",
+            "version": "==2.11.0"
+        },
+        "pytz": {
+            "hashes": [
+                "sha256:01a0681c4b9684a28304615eba55d1ab31ae00bf68ec157ec3708a8182dbbcd0",
+                "sha256:78f4f37d8198e0627c5f1143240bb0206b8691d8d7ac6d78fee88b78733f8c4a"
+            ],
+            "version": "==2022.7.1"
+        }
+    },
+    "develop": {}
+}
+[user]@SLB-3D05SQ3:~/python/managing-python-packages-virtual-environments/demos$
+
+# Pipfile.lock. computer-generated file, store exactly version of every package i installed. this is what Pipenv uses to make the dependency tree deterministic.
+
+# => If I put Pipfile and Pipfile.lock in version control, then my teammates will have exactly the same version of every single package installed.
+# If at some point you need to upgrade packages or install other packages, you can always regenerate Pipfile.lock. 
+
+# Right now, I'm not in an active virtual environment, and that means that I cannot run my program. 
+# 1. To do that, I can use the pipenv run command, like this. 
+# Pipenv run will run any command you give it inside the virtual environment for this project. 
+
+[user]@SLB-3D05SQ3:~/python/managing-python-packages-virtual-environments/demos$ ls
+Pipfile  Pipfile.lock  babel_demo.py  requirements.txt
+[user]@SLB-3D05SQ3:~/python/managing-python-packages-virtual-environments/demos$ pipenv run python babel_demo.py
+In the Netherlands we write 12,345,678 as 12.345.678
+
+
+# 2. Another thing you can do is to run pipenv shell, and this starts a new shell inside the active environment. 
+
+ [user]@SLB-3D05SQ3:~/python/managing-python-packages-virtual-environments/demos$ pipenv shell
+Launching subshell in virtual environment...
+ . /home/[user]/python/virtualenvs/demos-dPSBztZf/bin/activate
+
+ # So now I can run my program simply by saying python babel_demo.py. 
+
+[user]@SLB-3D05SQ3:~/python/managing-python-packages-virtual-environments/demos$  . /home/[user]/python/virtualenvs/demos-dPSBztZf/bin/activate
+(demos) [user]@SLB-3D05SQ3:~/python/managing-python-packages-virtual-environments/demos$ ls
+Pipfile  Pipfile.lock  babel_demo.py  requirements.txt
+(demos) [user]@SLB-3D05SQ3:~/python/managing-python-packages-virtual-environments/demos$ python babel_demo.py
+In the Netherlands we write 12,345,678 as 12.345.678
+
+# Now to get out of the environment, in this case I have to take care to say exit instead of deactivate. 
+(demos) [user]@SLB-3D05SQ3:~/python/managing-python-packages-virtual-environments/demos$ exit
+exit
+[user]@SLB-3D05SQ3:~/python/managing-python-packages-virtual-environments/demos$
+
+# Now what if I want to work with another Python version? I can do this with the switch ‑‑two. 
+# If I say pipenv install ‑‑two, this tells Pipenv to install everything from the Pipfile in a Python 2 environment. 
+# Running it, we see that Pipenv automatically destroys the old virtual environment and starts a new one with Python 2. 
+# It also installs my dependencies so we can immediately run our code. 
+
+(demos) [user]@SLB-3D05SQ3:~/python/managing-python-packages-virtual-environments/demos$ pipenv install -r requirements.txt --two
+Requirements file provided! Importing into Pipfile...
+Installing --two...
+Resolving --two...
+Traceback (most recent call last):
+  File "/home/[user]/.local/lib/python3.8/site-packages/pipenv/patched/pip/_vendor/packaging/requirements.py", line 102, in __init__
+    req = REQUIREMENT.parseString(requirement_string)
+  File "/home/[user]/.local/lib/python3.8/site-packages/pipenv/patched/pip/_vendor/pyparsing/core.py", line 1141, in parse_string
+    raise exc.with_traceback(None)
+pipenv.patched.pip._vendor.pyparsing.exceptions.ParseException: Expected W:(0-9A-Za-z), found '-'  (at char 0), (line:1, col:1)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/[user]/.local/lib/python3.8/site-packages/pipenv/patched/pip/_vendor/pkg_resources/__init__.py", line 3101, in __init__
+    super(Requirement, self).__init__(requirement_string)
+  File "/home/[user]/.local/lib/python3.8/site-packages/pipenv/patched/pip/_vendor/packaging/requirements.py", line 104, in __init__
+    raise InvalidRequirement(
+pipenv.patched.pip._vendor.packaging.requirements.InvalidRequirement: Parse error at "'--two'": Expected W:(0-9A-Za-z)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/[user]/.local/lib/python3.8/site-packages/pipenv/vendor/requirementslib/models/requirements.py", line 964, in _parse_name_from_line
+    self._requirement = init_requirement(self.line)
+  File "/home/[user]/.local/lib/python3.8/site-packages/pipenv/vendor/requirementslib/models/utils.py", line 191, in init_requirement
+    req = Requirement.parse(name)
+  File "/home/[user]/.local/lib/python3.8/site-packages/pipenv/patched/pip/_vendor/pkg_resources/__init__.py", line 3148, in parse
+    req, = parse_requirements(s)
+  File "/home/[user]/.local/lib/python3.8/site-packages/pipenv/patched/pip/_vendor/pkg_resources/__init__.py", line 3094, in parse_requirements
+    yield Requirement(line)
+  File "/home/[user]/.local/lib/python3.8/site-packages/pipenv/patched/pip/_vendor/pkg_resources/__init__.py", line 3103, in __init__
+    raise RequirementParseError(str(e))
+pipenv.patched.pip._vendor.pkg_resources.RequirementParseError: Parse error at "'--two'": Expected W:(0-9A-Za-z)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/[user]/.local/bin/pipenv", line 8, in <module>
+    sys.exit(cli())
+  File "/home/[user]/.local/lib/python3.8/site-packages/pipenv/vendor/click/core.py", line 1128, in __call__
+    return self.main(*args, **kwargs)
+  File "/home/[user]/.local/lib/python3.8/site-packages/pipenv/cli/options.py", line 57, in main
+    return super().main(*args, **kwargs, windows_expand_args=False)
+  File "/home/[user]/.local/lib/python3.8/site-packages/pipenv/vendor/click/core.py", line 1053, in main
+    rv = self.invoke(ctx)
+  File "/home/[user]/.local/lib/python3.8/site-packages/pipenv/vendor/click/core.py", line 1659, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+  File "/home/[user]/.local/lib/python3.8/site-packages/pipenv/vendor/click/core.py", line 1395, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+  File "/home/[user]/.local/lib/python3.8/site-packages/pipenv/vendor/click/core.py", line 754, in invoke
+    return __callback(*args, **kwargs)
+  File "/home/[user]/.local/lib/python3.8/site-packages/pipenv/vendor/click/decorators.py", line 84, in new_func
+    return ctx.invoke(f, obj, *args, **kwargs)
+  File "/home/[user]/.local/lib/python3.8/site-packages/pipenv/vendor/click/core.py", line 754, in invoke
+    return __callback(*args, **kwargs)
+  File "/home/[user]/.local/lib/python3.8/site-packages/pipenv/cli/command.py", line 237, in install
+    do_install(
+  File "/home/[user]/.local/lib/python3.8/site-packages/pipenv/core.py", line 2312, in do_install
+    pkg_requirement = Requirement.from_line(pkg_line)
+  File "/home/[user]/.local/lib/python3.8/site-packages/pipenv/vendor/requirementslib/models/requirements.py", line 2677, in from_line
+    parsed_line = Line(line)
+  File "/home/[user]/.local/lib/python3.8/site-packages/pipenv/vendor/requirementslib/models/requirements.py", line 171, in __init__
+    self.parse()
+  File "/home/[user]/.local/lib/python3.8/site-packages/pipenv/vendor/requirementslib/models/requirements.py", line 1300, in parse
+    self.parse_name()
+  File "/home/[user]/.local/lib/python3.8/site-packages/pipenv/vendor/requirementslib/models/requirements.py", line 1025, in parse_name
+    name = self._parse_name_from_line()
+  File "/home/[user]/.local/lib/python3.8/site-packages/pipenv/vendor/requirementslib/models/requirements.py", line 966, in _parse_name_from_line
+    raise RequirementError(
+pipenv.vendor.requirementslib.exceptions.RequirementError: Failed parsing requirement from '--two'
+(demos) [user]@SLB-3D05SQ3:~/python/managing-python-packages-virtual-environments/demos$ exit
+# only have python3, no python 2, so it got error
+[user]@SLB-3D05SQ3:~/python/managing-python-packages-virtual-environments/demos$ python -V
+
+Command 'python' not found, did you mean:
+
+  command 'python3' from deb python3
+  command 'python' from deb python-is-python3
+
+[user]@SLB-3D05SQ3:~/python/managing-python-packages-virtual-environments/demos$ python3 -V
+Python 3.8.10
+
+# Note that Pipenv complains now because our Pipfile still has the line that it requires Python 3, and we're now using Python 2. 
+# So in this case, I should edit my Pipfile and correct the Python version. 
+
+
+# Very well. That gives you a very short overview of what it looks like to work with Pipenv. 
+# It really combines functionality from pip, virtualenv, and virtualenvwrapper and even adds some extras.
+#  It's certainly a popular new tool, and if you find it easier to have one single tool instead of three different ones, this might be something for you.
+
+
+[user]@SLB-3D05SQ3:~/python/managing-python-packages-virtual-environments/demos$ pipenv --venv
+/home/[user]/python/virtualenvs/demos-dPSBztZf
+[user]@SLB-3D05SQ3:~/python/managing-python-packages-virtual-environments/demos$ pipenv --rm --help
+Usage: pipenv [OPTIONS] COMMAND [ARGS]...
+
+Options:
+  --where                         Output project home information.
+  --venv                          Output virtualenv information.
+  --py                            Output Python interpreter information.
+  --envs                          Output Environment Variable options.
+  --rm                            Remove the virtualenv.
+  --bare                          Minimal output.
+  --man                           Display manpage.
+  --support                       Output diagnostic information for use in
+                                  GitHub issues.
+  --site-packages / --no-site-packages
+                                  Enable site-packages for the virtualenv.
+                                  [env var: PIPENV_SITE_PACKAGES]
+  --python TEXT                   Specify which version of Python virtualenv
+                                  should use.
+  --clear                         Clears caches (pipenv, pip).  [env var:
+                                  PIPENV_CLEAR]
+  -q, --quiet                     Quiet mode.
+  -v, --verbose                   Verbose mode.
+  --pypi-mirror TEXT              Specify a PyPI mirror.
+  --version                       Show the version and exit.
+  -h, --help                      Show this message and exit.
+
+
+Usage Examples:
+   Create a new project using Python 3.7, specifically:
+   $ pipenv --python 3.7
+
+   Remove project virtualenv (inferred from current directory):
+   $ pipenv --rm
+
+   Install all dependencies for a project (including dev):
+   $ pipenv install --dev
+
+   Create a lockfile containing pre-releases:
+   $ pipenv lock --pre
+
+   Show a graph of your installed dependencies:
+   $ pipenv graph
+
+   Check your installed dependencies for security vulnerabilities:
+   $ pipenv check
+
+   Install a local setup.py into your virtual environment/Pipfile:
+   $ pipenv install -e .
+
+   Use a lower-level pip command:
+   $ pipenv run pip freeze
+
+Commands:
+  check         Checks for PyUp Safety security vulnerabilities and against
+                PEP 508 markers provided in Pipfile.
+  clean         Uninstalls all packages not specified in Pipfile.lock.
+  graph         Displays currently-installed dependency graph information.
+  install       Installs provided packages and adds them to Pipfile, or (if no
+                packages are given), installs all packages from Pipfile.
+  lock          Generates Pipfile.lock.
+  open          View a given module in your editor.
+  requirements  Generate a requirements.txt from Pipfile.lock.
+  run           Spawns a command installed into the virtualenv.
+  scripts       Lists scripts in current environment config.
+  shell         Spawns a shell within the virtualenv.
+  sync          Installs all packages specified in Pipfile.lock.
+  uninstall     Uninstalls a provided package and removes it from Pipfile.
+  update        Runs lock, then sync.
+  verify        Verify the hash in Pipfile.lock is up-to-date.
+[user]@SLB-3D05SQ3:~/python/managing-python-packages-virtual-environments/demos$ pipenv --rm -h
+Usage: pipenv [OPTIONS] COMMAND [ARGS]...
+
+Options:
+  --where                         Output project home information.
+  --venv                          Output virtualenv information.
+  --py                            Output Python interpreter information.
+  --envs                          Output Environment Variable options.
+  --rm                            Remove the virtualenv.
+  --bare                          Minimal output.
+  --man                           Display manpage.
+  --support                       Output diagnostic information for use in
+                                  GitHub issues.
+  --site-packages / --no-site-packages
+                                  Enable site-packages for the virtualenv.
+                                  [env var: PIPENV_SITE_PACKAGES]
+  --python TEXT                   Specify which version of Python virtualenv
+                                  should use.
+  --clear                         Clears caches (pipenv, pip).  [env var:
+                                  PIPENV_CLEAR]
+  -q, --quiet                     Quiet mode.
+  -v, --verbose                   Verbose mode.
+  --pypi-mirror TEXT              Specify a PyPI mirror.
+  --version                       Show the version and exit.
+  -h, --help                      Show this message and exit.
+
+
+Usage Examples:
+   Create a new project using Python 3.7, specifically:
+   $ pipenv --python 3.7
+
+   Remove project virtualenv (inferred from current directory):
+   $ pipenv --rm
+
+   Install all dependencies for a project (including dev):
+   $ pipenv install --dev
+
+   Create a lockfile containing pre-releases:
+   $ pipenv lock --pre
+
+   Show a graph of your installed dependencies:
+   $ pipenv graph
+
+   Check your installed dependencies for security vulnerabilities:
+   $ pipenv check
+
+   Install a local setup.py into your virtual environment/Pipfile:
+   $ pipenv install -e .
+
+   Use a lower-level pip command:
+   $ pipenv run pip freeze
+
+Commands:
+  check         Checks for PyUp Safety security vulnerabilities and against
+                PEP 508 markers provided in Pipfile.
+  clean         Uninstalls all packages not specified in Pipfile.lock.
+  graph         Displays currently-installed dependency graph information.
+  install       Installs provided packages and adds them to Pipfile, or (if no
+                packages are given), installs all packages from Pipfile.
+  lock          Generates Pipfile.lock.
+  open          View a given module in your editor.
+  requirements  Generate a requirements.txt from Pipfile.lock.
+  run           Spawns a command installed into the virtualenv.
+  scripts       Lists scripts in current environment config.
+  shell         Spawns a shell within the virtualenv.
+  sync          Installs all packages specified in Pipfile.lock.
+  uninstall     Uninstalls a provided package and removes it from Pipfile.
+  update        Runs lock, then sync.
+  verify        Verify the hash in Pipfile.lock is up-to-date.
+[user]@SLB-3D05SQ3:~/python/managing-python-packages-virtual-environments/demos$ pipenv --rm
+Removing virtualenv (/home/[user]/python/virtualenvs/demos-dPSBztZf)...
+[user]@SLB-3D05SQ3:~/python/managing-python-packages-virtual-environments/demos$ ls
+Pipfile  Pipfile.lock  babel_demo.py  requirements.txt
+[user]@SLB-3D05SQ3:~/python/managing-python-packages-virtual-environments/demos$ pipenv install babel
+Creating a virtualenv for this project...
+Pipfile: /home/[user]/python/managing-python-packages-virtual-environments/demos/Pipfile
+Using /usr/bin/python3.8 (3.8.10) to create virtualenv...
+⠴ Creating virtual environment...created virtual environment CPython3.8.10.final.0-64 in 4945ms
+  creator CPython3Posix(dest=/home/[user]/python/virtualenvs/demos-dPSBztZf, clear=False, no_vcs_ignore=False, global=False)
+  seeder FromAppData(download=False, pip=bundle, setuptools=bundle, wheel=bundle, via=copy, app_data_dir=/home/[user]/.local/share/virtualenv)
+    added seed packages: pip==23.0, setuptools==67.2.0, wheel==0.38.4
+  activators BashActivator,CShellActivator,FishActivator,NushellActivator,PowerShellActivator,PythonActivator
+
+✔ Successfully created virtual environment!
+Virtualenv location: /home/[user]/python/virtualenvs/demos-dPSBztZf
+Installing babel...
+Resolving babel...
+Installing...
+Adding babel to Pipfile's [packages] ...
+✔ Installation Succeeded
+Installing dependencies from Pipfile.lock (ab42f7)...
+To activate this project's virtualenv, run pipenv shell.
+Alternatively, run a command inside the virtualenv with pipenv run.
+[user]@SLB-3D05SQ3:~/python/managing-python-packages-virtual-environments/demos$ pipenv shell
+Launching subshell in virtual environment...
+[user]@SLB-3D05SQ3:~/python/managing-python-packages-virtual-environments/demos$  . /home/[user]/python/virtualenvs/demos-dPSBztZf/bin/activate
+(demos) [user]@SLB-3D05SQ3:~/python/managing-python-packages-virtual-environments/demos$
+
