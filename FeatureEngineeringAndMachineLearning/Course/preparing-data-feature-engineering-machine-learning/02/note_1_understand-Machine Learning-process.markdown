@@ -91,19 +91,48 @@ eg： 展开地毯 =》 3维 立体 到 2维 平面
 
 
 
-# data： training + test（validation）
+# data： training + validation + test
 what？
-1. 数据 拆分： 训练集（~80%） + 验证集，测试集（~20%）
+1. 数据 拆分： 训练集（~80%） + 验证集，测试集（~20%） for each 候选model
    1. why？ train，evaluate 的数据 应该分开： 
    2. 不能 既是 运动员，又是 裁判员
-2. 验证集： 验证，评估 模型的好坏程度？  
-   1. =》防止 过拟合，提高 model robustness for 未见过的data  
-   2. sanity-check for performance measure： model work well for 未见过的 data
+2. training set(=> n model): 用于 train model
+   1. training set 得到 众多candidate模型
+3. validation set(n validation) : cross-validation（交叉验证） 
+   1. target: validation set 从 众多candidate模型中，挑选 better candidate models
+   2. why ? only test set, 评估 maybe 存在 biased =》 overfitting（仅 将数据拆分为 training + test，why？？？）
+4. test test(1 test process)：验证，评估 模型的好坏程度
+   1. （model未见过的data in training + validadation）  => unbiased evaluation
+   2. =》防止 过拟合，提高 model robustness for 未见过的data  
+   3. sanity-check for performance measure： model work well for 未见过的 data
+   4. target: final evaluation =》 挑选 best 候选model
+   5. cons: but，评估 maybe 存在 biased =》 overfitting（仅 将数据拆分为 training + test，why？？？） =》validation set
+5. Hyperparameter tunning(参数调优) + singular cross-validation(交叉验证)
+   1. what? from multiple candidate models, choose the best one
+      1. n training =》n candidate models =》n validation =》1 best model => 1 test for final evaluate
+   2. cons:
+      1. validation set 被并入 model =》 引入 bias
+6. K-fold cross-validation
+   1. feature
+      1. computationally intensive，计算密集型
+      2. vert robust（not waste data： all data =》生成model）
+   2. what？ 
+      1. data: training + test
+         1. training： 分成n份
+            1. n-1份：training
+            2. 1 份：validation
+            3. 合计 ：n次 训练 =》 得到 n个不同model & n次 validation
+            4. 计算 平均的 表现分 =》 得到 better candidate models
+         2. test: final评估
+            1. test 最终评估 for best candidate models
+   3. why？
+      1. validation set 每次不同 =》减少采样不均导致validation的代表性下降 =》降低 biase的可能性
 
 
-02：34
-   
-why？
+# Q：
+1. what is Hyperparameter tunning(参数调优)？
+2. what is singular cross-validation(单一交叉验证)？
+3. what is K-fold cross-validation(k份交叉验证)？
 
 
 
