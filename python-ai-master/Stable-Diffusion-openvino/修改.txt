@@ -1,0 +1,12 @@
+D:\python\python38\lib\site-packages\diffusers\schedulers\scheduling_pndm.py
+
+230行
+alpha_prod_t = self.alphas_cumprod[int(timestep) + 1 - self._offset]
+
+370行  
+timesteps = torch.from_numpy(timesteps)
+# timesteps = timesteps.to(self.alphas_cumprod.device)
+timesteps = timesteps.to('cpu')
+
+338行
+timestep = int(timestep)
